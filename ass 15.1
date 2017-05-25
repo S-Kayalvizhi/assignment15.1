@@ -1,0 +1,13 @@
+CREATION OF MYSQL TABLE
+create table employee (id int, name varchar(45), department varchar(45), salary int, location varchar(45));
+
+INSERTION OF 10 RECORDS INTO THE TABLE
+insert into employee (id,name,department,salary,location) values (1,'AAA','BBB',1000,'CCC'),(2,'BBB','BBB',1000,'CCC'),(3,'CCC','BBB',1000,'CCC'),(4,'DDD','BBB',1000,'CCC'),(5,'EEE','BBB',1000,'CCC'),(6,'FFF','BBB',1000,'CCC'),(7,'GGG','BBB',1000,'CCC'),(8,'HHH','BBB',1000,'CCC'),(9,'III','BBB',1000,'CCC'),(10,'JJJ','BBB',1000,'CCC');
+
+SQOOP IMPORT INTO HDFS
+sqoop import --connect jdbc:mysql://localhost/employee --username root --table employee --m 1 --target-dir employee
+
+SQOOP IMPORT INTO HIVE TABLE
+
+sqoop create-hive-table --hive-table employee --connect jdbc:mysql://localhost/employee --username root --table employee
+load data inpath '/user/training/employee' into table employee;
